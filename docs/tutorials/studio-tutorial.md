@@ -218,8 +218,26 @@ Create a relationship between the **Person** and **Firm** classes.
 
 ![Add a super type](../assets/add-non-primitive-data-type.gif)
 
-## Create a Diagram
+## Create a Data Element
+Data Elements are top level elements that define test data for store/external formats. They are useful for sharing test data among different tests.
+### Relational
+Test data for relational is defined through csv values for each table, which is to be used when a user is sourcing data from relational databases. The name of the schema, the table, and the related CSV values must all be specified. Besides, the primary keys have to be distinct.
+![data-element-relational-sample-database](../assets/create-a-data-element-relational-sample-database.png)
+![data-element-relational-person-table](../assets/create-a-data-element-relational-person-table.png)
+![data-element-relational-firm-table](../assets/create-a-data-element-relational-firm-table.png)
 
+### External Format(m2m)
+Test data for model to model could be defined through external format. Provide test data for properties of source classes that are being used in the mapping.
+![[data-element-external-format-m2m](../assets/create-a-data-element-external-format-m2m.gif)
+
+### Service Store
+`UrlPath` in `Service Request Pattern` = Root path defined in the `Service Group` of `Service Store` and the path specified in the service for which this data element is created.
+In `Service Response Definition` panel, provide test data for all used properties in the chosen format. 
+Please check the demo video below for futher information.
+![[data-element-service-store](../assets/create-a-service-store-data-element.gif)
+
+
+## Create a Diagram
 To get started, click the **+** to open the **New Element** drop down menu on the left-hand side and select **Add a new diagram**.
 
 ### Add classes to the diagram
@@ -541,29 +559,80 @@ You can save these tests and continue to enhance your data models with the comfo
 
    ![Save execution as a test](../assets/execution.gif)
 
-## Create a new service (beta)
+## Create a Service
 
-Build services on top of data queries to consume modeled data systematically. To create a service select **New Service** from the drop down menu to launch the **Service Editor**. Please note that the Service Editor is still in beta state and some features may not be fully available yet.
+Build services on top of data queries to consume modeled data systematically. To create a service select **New Service** from the drop down menu to launch the **Service Editor**.
 
 ### General Tab
 
-In the **General** tab of the Service Editor, users can specify metadata of their service including URL, documentation and owners. URL parameters can be directly defined within the {} sytnax.
+In the **General** tab of the Service Editor, users can specify metadata of their service including the service URL, documentation and owners. URL parameters can be directly defined within the {} sytnax.
+
+   ![Service Editor - General](../assets/service-editor-general.JPG)
+
 
 ### Execution Tab
 
-In the execution tab, users can create and edit the service query. By hitting the "Edit Query" button, users can edit the query using the **Query Editor**. Users can make changes to the query either in the user-friendly form mode or in text mode.
+In the execution tab, users can create and edit their service query. By hitting the pencil icon button, users can edit the query using the [Query Builder](./query-tutorial.md). Users can make changes to the query either in the user-friendly form mode or in text mode. 
 
-#### Mapping & Runtime
+Additonally the bottom panel lets you define your execution context which represents the mapping and runtime used when executing your query, 
 
-Specify Mapping and Runtime for the service.
+**Multi** Executions lets you use a service parameter to decide what execution context (mapping, runtime) to use. You can switch between multi and single using the top right icon on the context panel. 
 
-#### Tests
+   ![Service Editor - Execution](../assets/service-editor-execution.JPG)
 
-Auto-generating test data for the service and testing its execution, is **not** yet supported.
 
-### Review the SQL generated from the service
+### Tests Tab
 
-This feature is **not** yet supported.
+This panel lets you define tests for the services you write by specifying test data, serialization format of your test and the assertions. 
+
+### See features in action
+
+#### Create a Service
+![Create a Service](../assets/create-a-service.gif)
+
+#### Create a multi execution service
+![Create a multi execution service](../assets/create-a-service-multi-execution.gif)
+
+## Create a Service Test 
+### Create connection test data
+Click the `generate` button to automatically generate test data if possible. Otherwise, please manually create test data.
+#### Relational
+Add relational data tables based on databases to which the service's mapping connects. 
+It's unnecessary to provide all columns with test data.
+The columns used in the service, however, require test data. Besides, the primary keys have to be distinct.
+![Create connections test data - Relational](../assets/create-a-relational-service-connection-test-data.gif)
+#### External Format (M2M)
+Click the `generate` button to automatically generate test data if possible. Otherwise, kindly manually provide test data for the source class's properties that serve as 
+the foundation for the properties used in the service. e.g. As shown in the video, _Firm's name is used in the service, which comes from Firm's legalName. Therefore, manually providing test data for legalName will be sufficient if the `generate` button is not working.
+![Create connections test data - Relational](../assets/create-a-service-connection-test-data-with-external-format.gif)
+
+#### Data element
+More examples of different types of Data element creation could be found [here](#create-a-data-element).
+![Create connections test data - Data Element](../assets/create-a-service-connection-test-with-data-element.gif)
+
+#### Service Store
+![Create connections test data - Data Element](../assets/create-a-service-connection-test-data-with-service-store.gif)
+
+### Relational
+
+![Create a service test - Relational](../assets/create-a-service-test-relational.gif)
+
+### Model to Model
+
+![Create a service test - M2M](../assets/create-a-service-test-m2m.gif)
+
+### Service Store
+
+![Create a service test - ServiceStore](../assets/create-a-service-test-servicestore.gif)
+
+### With Data Element
+
+![Create a service test - DataElement](../assets/create-a-service-test-servicestore.gif)
+
+### With Parameters
+![Create a service test - Parameters](../assets/create-a-service-test-parameters.gif)
+
+
 
 ## Promote a model-to-model mapping query to a service
 
@@ -574,10 +643,6 @@ This feature is **not** yet supported.
 ## Promote a relational-to-model query to a service
 
 This feature is not yet supported.
-
-### See features in action
-
-![Create a service](../assets/create-a-service.gif)
 
 ## Consume a Service
 

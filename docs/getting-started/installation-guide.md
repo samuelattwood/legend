@@ -8,7 +8,7 @@ There are a few different options to install and use Legend. They are listed bel
 
 ## Maven Install
 
-This option is for software developers who want to build and run Legend from source. Instructions can be found [here](maven-install.md).
+This option is for software developers who want to build and run Legend from source.
 
 ### Installation Guide
 
@@ -36,8 +36,8 @@ The Legend platform has several components. The minimum required to run Legend a
   - Redirect URI: Add the followings:
 
 ```sh
-http://localhost:7070/api/auth/callback
-http://localhost:7070/api/pac4j/login/callback
+http://localhost:6100/api/auth/callback
+http://localhost:6100/api/pac4j/login/callback
 ```
 
 - Java Development Kit (JDK) 11 or later.
@@ -57,7 +57,7 @@ mvn install [-DskipTests]
 java -cp legend-engine-server/target/*-shaded.jar org.finos.legend.engine.server.Server server legend-engine-server/src/test/resources/org/finos/legend/engine/server/test/userTestConfig.json
 ```
 
-Test by going to http://localhost:6060 in a browser. The Swagger page can be accessed at http://localhost:6060/api/swagger.
+Test by going to http://localhost:6300 in a browser. The Swagger page can be accessed at http://localhost:6300/api/swagger.
 
 #### Setup **legend-sdlc**.
 
@@ -76,9 +76,9 @@ mvn install [-DskipTests]
 java -cp legend-sdlc-server/target/*-shaded.jar org.finos.legend.sdlc.server.LegendSDLCServer server <path-to-config>
 ```
 
-Test by going to http://localhost:7070/api/info in the browser. The page should return basic server information.
+Test by going to http://localhost:6100/api/info in the browser. The page should return basic server information.
 
-Visit http://localhost:7070/api/auth/authorize in your browser, you might get redirected to the Gitlab login page or a Gitlab page that askes you to authorize Legend application. After you authenticate/authorize you should be redirected back to SDLC.
+Visit http://localhost:6100/api/auth/authorize in your browser, you might get redirected to the Gitlab login page or a Gitlab page that askes you to authorize Legend application. After you authenticate/authorize you should be redirected back to SDLC.
 
 #### Setup **legend-depot**.
 
@@ -92,32 +92,7 @@ Follow this [guide](https://github.com/finos/legend-studio/blob/master/README.md
 
 #### You're all set :tada:
 
-Visit http://localhost:8080/studio and start hacking
-
-## AWS Docker Install
-
-This option is for software developers who want to run the Legend Docker images on AWS for running a proof of concept. Instructions can be found [here](aws-docker.md).
-
-### Installation Guide
-
-This is a guide to install a minimal instance of the Legend platform, which consists of the following running on a single box :
-
-- An instance of the Legend Engine Server
-- An instance of the Legend SDLC Server
-- An instance of the Legend Studio Server
-- An instance of Mongodb
-- An instance of Gitlab
-
-#### Prerequisites
-
-- A Linux box. This guide was tested on an AWS EC2 box.
-- Docker service (and sudo privileges)
-- Internet connectivity
-- Internet connectivity to Gitlab.com
-
-### Installation steps
-
-See [Docker installation instructions](https://github.com/finos/legend/tree/master/installers/aws-docker).
+Visit http://localhost:9000/studio and start hacking
 
 ## Docker Compose
 
